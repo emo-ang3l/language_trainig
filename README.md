@@ -30,3 +30,9 @@
 ```bash
 git clone https://github.com/emo-ang3l/language_trainig.git
 cd language_trainig
+```
+2. Запусти программу
+
+```bash
+cd main
+lua main.lua
