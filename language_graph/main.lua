@@ -7,6 +7,7 @@ local colors = {
 local font
 local fontMain
 local bgImage
+local bgImageFile
 
 local variables = {
     x = love.graphics.getWidth(),
@@ -17,7 +18,7 @@ local variables = {
 }
 
 function love.load()
-
+    bgImageFile = love.graphics.newImage("include/image/img.png")
     bgImage = love.graphics.newImage("include/image/graph_paper.png")
     font = love.graphics.newFont("include/fonts/CherryBombOne-Regular.ttf", 24)
     fontMain = love.graphics.newFont("include/fonts/Grandstander-Bold.ttf", 64)
@@ -28,13 +29,17 @@ end
 
 function love.draw()
     love.graphics.clear(colors.bg)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(bgImageFile, 12, 0, 0, 0.1, 0.1)
+
+
+
 
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(bgImage, 0, 0, 0,
        0.14,       -- scale X
        0.14    -- scale Y
     )
-    love.graphics.setBlendMode("alpha")
 
     love.graphics.setFont(fontMain)
     local tw_big = fontMain:getWidth(variables.textBig)
@@ -71,6 +76,91 @@ function love.draw()
 
     love.graphics.setColor(colors.logo_bottom)
     love.graphics.print(variables.textSmall, base_x_small, base_y_small)
+
+
+
+    --плашки
+    local radius = 26
+    local pw = 150                  -- ширина плашки
+    local ph = 40               -- высота плашки
+    local px = math.floor(variables.x / 2 - pw / 2)   -- центр по горизонтали
+    local py = 320
+
+
+    love.graphics.setColor(colors.outline, 1)     -- тёмно-коричневый / твой стиль
+    love.graphics.rectangle("fill", px, py, pw, ph, radius, radius)
+
+    -- Обводка
+    love.graphics.setLineWidth(5)                   -- толщина 4–8 обычно хорошо
+    love.graphics.setColor(colors.logo_bottom, 1)       -- золотисто-жёлтая
+    love.graphics.rectangle("line", px, py, pw, ph, radius, radius)
+
+    -- Текст внутри плашки
+    love.graphics.setFont(font)                     -- или fontMain, если хочешь крупнее
+    love.graphics.setColor(colors.logo_bottom)        -- светлый текст
+    love.graphics.printf(
+        "ADD",
+        px,                                     -- левая граница = левая граница плашки
+        py + (ph - font:getHeight()) / 2,       -- вертикально по центру плашки
+        pw,                                     -- ширина области = ширина плашки
+        "center"
+    )
+--
+    love.graphics.setColor(colors.outline, 1)     -- тёмно-коричневый / твой стиль
+    love.graphics.rectangle("fill", px, py+60, pw, ph, radius, radius)
+
+    -- Обводка
+    love.graphics.setLineWidth(5)                   -- толщина 4–8 обычно хорошо
+    love.graphics.setColor(colors.logo_bottom, 1)       -- золотисто-жёлтая
+    love.graphics.rectangle("line", px, py+60, pw, ph, radius, radius)
+
+    -- Текст внутри плашки
+    love.graphics.setFont(font)                     -- или fontMain, если хочешь крупнее
+    love.graphics.setColor(colors.logo_bottom)        -- светлый текст
+    love.graphics.printf(
+        "lEARN",
+        px,                                     -- левая граница = левая граница плашки
+        py + 60 + (ph - font:getHeight()) / 2,       -- вертикально по центру плашки
+        pw,                                     -- ширина области = ширина плашки
+        "center"
+    )
+
+    love.graphics.setColor(colors.outline, 1)     -- тёмно-коричневый / твой стиль
+    love.graphics.rectangle("fill", px, py - 60, pw, ph, radius, radius)
+
+    -- Обводка
+    love.graphics.setLineWidth(5)                   -- толщина 4–8 обычно хорошо
+    love.graphics.setColor(colors.logo_bottom, 1)       -- золотисто-жёлтая
+    love.graphics.rectangle("line", px, py - 60, pw, ph, radius, radius)
+
+    -- Текст внутри плашки
+    love.graphics.setFont(font)                     -- или fontMain, если хочешь крупнее
+    love.graphics.setColor(colors.logo_bottom)        -- светлый текст
+    love.graphics.printf(
+        "START",
+        px,                                     -- левая граница = левая граница плашки
+        py - 60 + (ph - font:getHeight()) / 2,       -- вертикально по центру плашки
+        pw,                                     -- ширина области = ширина плашки
+        "center"
+    )
+    love.graphics.setColor(colors.outline, 1)     -- тёмно-коричневый / твой стиль
+    love.graphics.rectangle("fill", px, py + 120, pw, ph, radius, radius)
+
+    -- Обводка
+    love.graphics.setLineWidth(5)                   -- толщина 4–8 обычно хорошо
+    love.graphics.setColor(colors.logo_bottom, 1)       -- золотисто-жёлтая
+    love.graphics.rectangle("line", px, py + 120, pw, ph, radius, radius)
+
+    -- Текст внутри плашки
+    love.graphics.setFont(font)                     -- или fontMain, если хочешь крупнее
+    love.graphics.setColor(colors.logo_bottom)        -- светлый текст
+    love.graphics.printf(
+        "EXIT",
+        px,                                     -- левая граница = левая граница плашки
+        py + 120 + (ph - font:getHeight()) / 2,       -- вертикально по центру плашки
+        pw,                                     -- ширина области = ширина плашки
+        "center"
+    )
 
     love.graphics.setFont(love.graphics.newFont(16))
     love.graphics.setColor(0.5, 0.5, 0.5, 0.7)
